@@ -1,7 +1,8 @@
-//Noncompliant Code Example (Security Policy File)
-//This noncompliant example grants AllPermission to the klib library. 
+// This compliant solution shows a policy file that can be used to enforce fine-grained permissions.
 
 // Grant the klib library AllPermission
-grant codebase "file:${klib.home}/j2se/home/klib.jar" {
- permission java.security.AllPermission;
+grant codeBase
+ "file:${klib.home}/j2se/home/klib.jar", signedBy "Admin" {
+ permission java.io.FilePermission "/tmp/*", "read";
+ permission java.io.SocketPermission "*", "connect";
 };
